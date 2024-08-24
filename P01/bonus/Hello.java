@@ -5,6 +5,7 @@ public class Hello
 {
     public static void main(String[] args)
     {
+        // useing the scanner class
         Scanner in = new Scanner(System.in);
         String name;
 
