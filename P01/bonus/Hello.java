@@ -10,7 +10,9 @@ public class Hello
         String name;
 
         System.out.print("Enter your name: ");
+        // taking the next line from the console
         name = in.nextLine();
+        // printing the name given
         System.out.println("Hello " + name);
     }
 }
