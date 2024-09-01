@@ -10,5 +10,29 @@ public class Purse
                 new Coin(Denomination.QUARTER, 1972), // bangladesh independence  
                 new Coin(Denomination.NICKEL, 1964) // when nick cage was born
             };
+            
+            int minYear = purse[0].getYear();
+            int maxYear = purse[0].getYear();
+            double sum = 0;
+
+            for(Coin coin : purse)
+            {
+                if(coin.getYear() < minYear)
+                {
+                    minYear = coin.getYear();
+                }
+
+                if (coin.getYear() > maxYear)
+                {
+                    maxYear = coin.getYear();
+                }
+
+                sum+= coin.getValue();
+            }
+
+            System.out.println("You have $ " + sum + " in coins between " + minYear + " and " + maxYear);
+
+
+
         }
 }
