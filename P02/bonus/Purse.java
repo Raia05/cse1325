@@ -17,6 +17,7 @@ public class Purse
 
             for(Coin coin : purse)
             {
+                System.out.println(coin);
                 if(coin.getYear() < minYear)
                 {
                     minYear = coin.getYear();
