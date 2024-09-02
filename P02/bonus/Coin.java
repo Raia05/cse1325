@@ -11,21 +11,18 @@ public class Coin
 
     public double getValue()
     {
-        return 
-            switch (this.denomination)
-            {
-                case PENNY -> 0.01;
-                case NICKEL -> 0.05;
-                case DIME -> 0.10;
-                case QUARTER -> 0.25;
-                default -> 0;
-
-            };
+        return this.denomination.getValue();
     }
 
     public int getYear()
     {
         return this.year;
+    }
+
+    @Override
+    public String toString()
+    {
+        return this.year + " " + this.denomination;
     }
 
 
