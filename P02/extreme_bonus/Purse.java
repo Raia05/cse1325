@@ -14,6 +14,7 @@ public class Purse
             int minYear = purse[0].getYear();
             int maxYear = purse[0].getYear();
             double sum = 0;
+            double totalWeight = 0;
 
             for(Coin coin : purse)
             {
@@ -27,11 +28,11 @@ public class Purse
                 {
                     maxYear = coin.getYear();
                 }
-
+                totalWeight+= coin.getWeight();
                 sum+= coin.getValue();
             }
 
-            System.out.println("You have $ " + sum + " in coins between " + minYear + " and " + maxYear);
+            System.out.println("You have $ " + sum + " in coins between " + minYear + " and " + maxYear + " weighing " + String.format("%.3f",totalWeight) + " grams");
 
 
 
