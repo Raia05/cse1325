@@ -5,7 +5,7 @@ public class Account
 
     public Account()
     {
-        this.accountNumber = Account.nextAccountNumber++;
+        this.accountNumber = ++Account.nextAccountNumber;
     }
 
     public int getAccountNumber()
