@@ -12,7 +12,7 @@ public class TestMedia
 
         if(!("The Little Shop of Horrors (https://publicdomainmovie.net/movie/the-little-shop-of-horrors-0)".equals(horror.toString())))
         {
-            System.out.println("FAIL: expected name (URL) but got " + horror.toString());
+            System.out.println("FAIL: expected The Little Shop of Horrors (https://publicdomainmovie.net/movie/the-little-shop-of-horrors-0) but got " + horror.toString());
         }
     }
 }
