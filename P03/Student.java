@@ -13,7 +13,7 @@ public class Student
             throw new IllegalArgumentException("Non-UTA email address: " + email);
         this.email = email;
 
-        this.account = Account();
+        this.account = new Account();
 
     }
 
@@ -25,6 +25,6 @@ public class Student
     @Override
     public String toString()
     {
-        return this.name + " (" + this.id ", " + this.email + ", Account #" + this.account.getAccountNumber() + ")";
+        return this.name + " (" + this.id + ", " + this.email + ", Account #" + this.account.getAccountNumber() + ")";
     }
 }
