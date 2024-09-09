@@ -32,7 +32,7 @@ public class Purse
                 sum+= coin.getValue();
             }
 
-            System.out.println("You have $ " + sum + " in coins between " + minYear + " and " + maxYear + " weighing " + String.format("%.3f",totalWeight) + " grams");
+            System.out.println("You have $" + sum + " in coins between " + minYear + " and " + maxYear + " weighing " + String.format("%.3f",totalWeight) + " grams");
 
 
 

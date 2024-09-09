@@ -31,7 +31,7 @@ public class Purse
                 sum+= coin.getValue();
             }
 
-            System.out.println("You have $ " + sum + " in coins between " + minYear + " and " + maxYear);
+            System.out.println("You have $" + sum + " in coins between " + minYear + " and " + maxYear);
 
 
 
