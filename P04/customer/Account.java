@@ -1,3 +1,5 @@
+package customer;
+
 abstract class Account
 {
     private int accountNumber;
@@ -13,8 +15,4 @@ abstract class Account
         return this.accountNumber;
     }
 
-    public String play(Media media)
-    {
-        return "Playing " + media;
-    }
-}
+    abstract String play(Media media);
