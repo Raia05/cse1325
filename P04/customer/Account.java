@@ -1,4 +1,4 @@
-public class Account
+abstract class Account
 {
     private int accountNumber;
     private static int nextAccountNumber = 0;
