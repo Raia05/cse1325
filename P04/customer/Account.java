@@ -1,5 +1,6 @@
 package customer;
 
+import product.Media;
 abstract class Account
 {
     private int accountNumber;
@@ -15,4 +16,6 @@ abstract class Account
         return this.accountNumber;
     }
 
-    abstract String play(Media media);
+    public abstract String play(Media media);
+
+}
