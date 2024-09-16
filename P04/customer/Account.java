@@ -1,7 +1,7 @@
 package customer;
 
 import product.Media;
-abstract class Account
+public abstract class Account
 {
     private int accountNumber;
     private static int nextAccountNumber = 0;
