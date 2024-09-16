@@ -51,10 +51,11 @@ public class Moes
     public int getPoints(int studentIndex)
     {
         int points;
-        Account account = this.customer.get(studentIndex).getAccount()
+        Account account = this.customers.get(studentIndex).getAccount();
         if (account instanceof Alacarte)
         {
-            points = (Alacarte)account.getPointsRemaining();
+            Alacarte alacarte = (Alacarte)account;
+            points = alacarte.getPointsRemaining();
         }
         else if(account instanceof Unlimited)
         {
@@ -70,11 +71,12 @@ public class Moes
     public String buyPoints(int studentIndex, int points)
     {
         String point;
-        Account account = this.customer.get(studentIndex).getAccount()
+        Account account = this.customers.get(studentIndex).getAccount();
         if (account instanceof Alacarte)
         {
-            (Alacarte)account.buyPoints(points);
-            point = this.customer.get(studentIndex).toString() + " now has " + points + " points";
+            Alacarte alacarte = (Alacarte)account;
+            alacarte.buyPoints(points);
+            point = this.customers.get(studentIndex).toString() + " now has " + points + " points";
         }
         else if(account instanceof Unlimited)
         {
@@ -90,7 +92,7 @@ public class Moes
 
     public String playMedia(int studentIndex, int mediaIndex)
     {
-        return customer.get(studentIndex).requestMedia(library.get(mediaIndex));
+        return this.customers.get(studentIndex).requestMedia(this.library.get(mediaIndex));
     }
 
 
