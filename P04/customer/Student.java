@@ -9,7 +9,7 @@ public class Student
     private String email;
     private Account account;
 
-    Student(String name, int id, String email, boolean unlimited)
+    public Student(String name, int id, String email, boolean unlimited)
     {
         this.name = name;
         this.id = id;
