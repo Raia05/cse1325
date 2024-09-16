@@ -9,16 +9,27 @@ public class Student
     private String email;
     private Account account;
 
-    Student(String name, int id, String email)
+    Student(String name, int id, String email, boolean unlimited)
     {
         this.name = name;
         this.id = id;
         if(!(email.endsWith("@uta.edu") || email.endsWith("@mavs.uta.edu")))
             throw new IllegalArgumentException("Non-UTA email address: " + email);
         this.email = email;
+        if(unlimited)
+        {
+            this.account = new Unlimited();
+        }
+        else
+        {
+            this.account = new Alacarte();
+        }
 
-        this.account = new Account();
+    }
 
+    public Account getAccount()
+    {
+        return this.account;
     }
 
     public String requestMedia(Media media)
