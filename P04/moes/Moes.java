@@ -2,6 +2,9 @@ package moes;
 
 import java.util.ArrayList;
 import customer.Student;
+import customer.Account;
+import customer.Alacarte;
+import customer.Unlimited;
 import product.Media;
 
 public class Moes
@@ -47,11 +50,41 @@ public class Moes
 
     public int getPoints(int studentIndex)
     {
-
+        int points;
+        Account account = this.customer.get(studentIndex).getAccount()
+        if (account instanceof Alacarte)
+        {
+            points = (Alacarte)account.getPointsRemaining();
+        }
+        else if(account instanceof Unlimited)
+        {
+            points = Integer.MAX_VALUE;
+        }
+        else
+        {
+            throw new UnsupportedOperationException("unknown subclass of Account");
+        }
+        return points;
     }
 
     public String buyPoints(int studentIndex, int points)
     {
+        String point;
+        Account account = this.customer.get(studentIndex).getAccount()
+        if (account instanceof Alacarte)
+        {
+            (Alacarte)account.buyPoints(points);
+            point = this.customer.get(studentIndex).toString() + " now has " + points + " points";
+        }
+        else if(account instanceof Unlimited)
+        {
+            point = "this Student has an Unlimited Account and needs no additional points";
+        }
+        else
+        {
+            throw new UnsupportedOperationException("unknown subclass of Account");
+        }
+        return point;
 
     }
 
