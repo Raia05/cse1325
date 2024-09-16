@@ -90,7 +90,7 @@ public class Moes
 
     public String playMedia(int studentIndex, int mediaIndex)
     {
-
+        return customer.get(studentIndex).requestMedia(library.get(mediaIndex));
     }
 
 
