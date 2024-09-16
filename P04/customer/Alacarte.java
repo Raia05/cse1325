@@ -4,7 +4,7 @@ import product.Media;
 
 public class Alacarte extends Account
 {
-    private int pointsRemaining;
+    private int pointsRemaining = 0;
 
     public void buyPoints(int points)
     {
