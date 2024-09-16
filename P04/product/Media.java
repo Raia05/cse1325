@@ -18,7 +18,7 @@ public class Media
 
     /**
      * Constructs a Media object with the specified title, URL, and points.
-     * 
+     * @since 1.0
      * @param title  the title of the media
      * @param url    the URL associated with the media
      * @param points the points or rating assigned to the media
@@ -32,7 +32,7 @@ public class Media
 
     /**
      * Returns the points or cost of the media.
-     * 
+     * @since 1.0
      * @return the point cost of the media
      */
     public int getPoints()
@@ -43,7 +43,7 @@ public class Media
     /**
      * Returns a string representation of the media in the format 
      * "{title} ({url}, {points} points)".
-     * 
+     * @since 1.0
      * @return a formatted string representing the media
      */
     @Override

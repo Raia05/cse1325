@@ -8,7 +8,7 @@
   </target>
 
   <target name="javadoc" description="Generate JavaDoc">
-      <javadoc packagenames="customer.*,product.*"
+      <javadoc packagenames="customer.*,product.*,moes.*"
            sourcepath="."
            excludepackagenames="com.dummy.test.doc-files.*"
            defaultexcludes="yes"
