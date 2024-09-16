@@ -34,6 +34,14 @@ public class Moes
 
     public String getStudentList()
     {
+        StringBuilder studentList = new StringBuilder();
+
+        for(int i = 0; i < this.customers.size(); i++)
+        {
+            studentList.append(i).append(") ").append(this.customers.get(i).toString()).append("\n");
+        }
+
+        return studentList.toString();
 
     }
 
