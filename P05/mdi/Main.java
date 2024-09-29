@@ -2,6 +2,7 @@ package mdi;
 import moes.Moes;
 import java.util.Scanner;
 import customer.Student;
+import product.Media;
 
 public class Main
 {
@@ -46,6 +47,20 @@ public class Main
 
     private void addMedia()
     {
+        Scanner in = new Scanner(System.in);
+
+        System.out.print("Title? ");
+        String title = in.nextLine();
+
+        System.out.print("URL? ");
+        String url = in.nextLine();
+
+        System.out.print("Points? ");
+        int points = in.nextInt();
+
+        Media media = new Media(title, url, points);
+        this.moes.addMedia(media);
+
 
     }
 
@@ -55,6 +70,16 @@ public class Main
     }
 
     private void listMedia()
+    {
+        System.out.println(this.moes.getMediaList());
+    }
+
+    private void AvailablePoints()
+    {
+
+    }
+
+    private void buyPoints()
     {
         
     }
