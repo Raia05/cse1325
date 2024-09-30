@@ -10,22 +10,34 @@ public class Main
     private String output;
     private Menu menu;
     private boolean running;
-    private Scanner in = new Scanner(System.in);
-
+    private static Scanner in = new Scanner(System.in);
+    private String menuTitle = """
+      ___           ___           ___           ___     
+     /\\  \\         /\\  \\         /\\__\\         /\\__\\    
+    |::\\  \\       /::\\  \\       /:/ _/_       /:/ _/_   
+    |:|:\\  \\     /:/\\:\\  \\     /:/ /\\__\\     /:/ /\\  \\  
+  __|:|\\:\\  \\   /:/  \\:\\  \\   /:/ /:/ _/_   /:/ /::\\  \\ 
+ /::::|_\\:\\__\\ /:/__/ \\:\\__\\ /:/_/:/ /\\__\\ /:/_/:/\\:\\__\\
+ \\:\\~~\\  \\/__/ \\:\\  \\ /:/  / \\:\\/:/ /:/  / \\:\\/:/ /:/  /
+  \\:\\  \\        \\:\\  /:/  /   \\::/_/:/  /   \\::/ /:/  / 
+   \\:\\  \\        \\:\\/:/  /     \\:\\/:/  /     \\/_/:/  /  
+    \\:\\__\\        \\::/  /       \\::/  /        /:/  /   
+     \\/__/         \\/__/         \\/__/         \\/__/  
+    """;
     private void addStudent()
     {
 
         String name = getString("Student name? ");
-
+        boolean unlimited;
         int id = getInt("Student ID? ");
 
         String email = getString("Student email? ");
-        char account = getString("(a)lacarte or (u)nlimited? ").toCharArray[0];
+        char account = getString("(a)lacarte or (u)nlimited? ").toCharArray()[0];
 
         if (account == 'a')
-            boolean unlimited = false;
+            unlimited = false;
         else if (account == 'u')
-            boolean unlimited = true;
+            unlimited = true;
         else
             throw new IllegalArgumentException("unknown Account type specified");
 
@@ -44,7 +56,7 @@ public class Main
     {
 
         String title = getString("Title? ");
-        String title = getString("URL? ");
+        String url = getString("URL? ");
         int points = getInt("Points? ");
 
         Media media = new Media(title, url, points);
@@ -56,7 +68,7 @@ public class Main
     private void playMedia()
     {
 
-        int student = getInt("Student number? ")
+        int student = getInt("Student number? ");
         int media = getInt("Media number? ");
 
         this.moes.playMedia(student, media);
@@ -103,33 +115,29 @@ public class Main
         this.menu.addMenuItem(new MenuItem("List all students", () -> listStudents()));
         this.menu.addMenuItem(new MenuItem("Add a student", () -> addStudent()));
 
-
-
-
-
-
-
-
     }
 
     public static void main(String[] args) 
     {
-        
+        Main app = new Main();
+        app.mdi();
     }
 
-    private void mid()
+    private void mdi()
     {
         while(this.running)
         {
             try
             {
-                int i;
+                System.out.println(menuTitle + "\n\n\n" + this.menu + "\n" + this.output);
+                this.output = "";
+                Integer i = getInt("Selection? ");
                 if (i == null) continue;
                 menu.run(i);
             }
             catch (Exception e)
             {
-                print("#### Invalid command");
+                System.out.println("#### Invalid command");
             }
         }
 
@@ -162,6 +170,8 @@ public class Main
             return s;
 
         }
+        if(cancelInput != null && s.equals(cancelInput)) s = null;
+        return s;
     }
 
 
