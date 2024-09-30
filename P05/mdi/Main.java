@@ -15,17 +15,12 @@ public class Main
     private void addStudent()
     {
 
-        System.out.print("Student name? ");
-        String name = in.nextLine();
+        String name = getString("Student name? ");
 
-        System.out.print("Student ID? ");
-        int id = in.nextInt();
+        int id = getInt("Student ID? ");
 
-        System.out.print("Student email? ");
-        String email = in.nextLine();
-
-        System.out.print("(a)lacarte or (u)nlimited? ");
-        char account = in.next().toCharArray()[0];
+        String email = getString("Student email? ");
+        char account = getString("(a)lacarte or (u)nlimited? ").toCharArray[0];
 
         if (account == 'a')
             boolean unlimited = false;
@@ -48,14 +43,9 @@ public class Main
     private void addMedia()
     {
 
-        System.out.print("Title? ");
-        String title = in.nextLine();
-
-        System.out.print("URL? ");
-        String url = in.nextLine();
-
-        System.out.print("Points? ");
-        int points = in.nextInt();
+        String title = getString("Title? ");
+        String title = getString("URL? ");
+        int points = getInt("Points? ");
 
         Media media = new Media(title, url, points);
         this.moes.addMedia(media);
@@ -66,11 +56,8 @@ public class Main
     private void playMedia()
     {
 
-        System.out.print("Student number? ");
-        int student = in.nextInt();
-
-        System.out.print("Media number? ");
-        int media = in.nextInt();
+        int student = getInt("Student number? ")
+        int media = getInt("Media number? ");
 
         this.moes.playMedia(student, media);
 
@@ -84,9 +71,7 @@ public class Main
     private void AvailablePoints()
     {
 
-        System.out.print("Student number? ");
-        int student = in.nextInt();
-
+        int student = getInt("Student number?");
         this.moes.getPoints(student);
 
 
@@ -95,11 +80,8 @@ public class Main
     private void buyPoints()
     {
 
-        System.out.print("Student number? ");
-        int student = in.nextInt();
-
-        System.out.print("Points? ");
-        int points = in.nextInt();
+        int student = getInt("Student number? ");
+        int points = getInt("Points? ");
 
         this.moes.buyPoints(student, points);
         
@@ -187,14 +169,41 @@ public class Main
     {
         return getString(prompt, cancelInput, null);
     }
-    
+
     public static String getString(String prompt) 
     {
         return getString(prompt, null, null);
     }
 
 
+    public static Integer getInt(String prompt, String cancelInput, String defaultInput) 
+    {
+        Integer i = null;
+        while(true) {
+            try 
+            {
+                String s = getString(prompt, cancelInput, defaultInput);
+                if(s != null && !s.isEmpty()) i = Integer.parseInt(s);
+                break;
+            } 
+            catch(Exception e) 
+            {
+                System.err.println("Invalid input!");
+            }
+        }
+        return i;
+    }
 
+
+    public static Integer getInt(String prompt, String cancelInput) 
+    {
+        return getInt(prompt, cancelInput, null);
+    }
+
+    public static Integer getInt(String prompt) 
+    {
+        return getInt(prompt, null, null);
+    }
 
 
 
