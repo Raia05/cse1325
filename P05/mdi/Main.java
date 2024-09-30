@@ -44,12 +44,13 @@ public class Main
         Student student = new Student(name, id, email, unlimited);
 
         this.moes.addStudent(student);
+        this.output = "~".repeat(25) + "\n" + "Added student " + student + "\n" +"~".repeat(25) + "\n";
 
     }
 
     private void listStudents()
     {
-        System.out.println(this.moes.getStudentList());
+        this.output = "~".repeat(25) + "\n" + this.moes.getStudentList() + "\n" +"~".repeat(25) + "\n";
     }
 
     private void addMedia()
@@ -61,6 +62,8 @@ public class Main
 
         Media media = new Media(title, url, points);
         this.moes.addMedia(media);
+        this.output = "~".repeat(25) + "\n" + "Added media " + media + "\n" +"~".repeat(25) + "\n";
+
 
 
     }
@@ -71,20 +74,22 @@ public class Main
         int student = getInt("Student number? ");
         int media = getInt("Media number? ");
 
-        this.moes.playMedia(student, media);
+        this.output = "~".repeat(25) + "\n"  + this.moes.playMedia(student, media) + "\n" +"~".repeat(25) + "\n";
+
 
     }
 
     private void listMedia()
     {
-        System.out.println(this.moes.getMediaList());
+        this.output = "~".repeat(25) + "\n" + this.moes.getMediaList() + "\n" +"~".repeat(25) + "\n";
     }
 
     private void AvailablePoints()
     {
 
-        int student = getInt("Student number?");
-        this.moes.getPoints(student);
+        int student = getInt("Student number? ");
+        this.output = "~".repeat(25) + "\n" + "Student has " + this.moes.getPoints(student) + " Points" + "\n" +"~".repeat(25) + "\n";
+
 
 
     }
@@ -94,8 +99,8 @@ public class Main
 
         int student = getInt("Student number? ");
         int points = getInt("Points? ");
+        this.output = "~".repeat(25) + "\n" + this.moes.buyPoints(student, points) + "\n" +"~".repeat(25) + "\n";
 
-        this.moes.buyPoints(student, points);
         
     }
 
