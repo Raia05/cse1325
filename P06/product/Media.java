@@ -42,7 +42,7 @@ public class Media
     {
         bw.write(this.title + "\n");
         bw.write(this.url + "\n");
-        bw.write(this.points + "\n");
+        bw.write("" + this.points + "\n");
     }
 
     /**
