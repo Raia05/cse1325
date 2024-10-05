@@ -1,6 +1,7 @@
 package product;
-
-
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
 /**
  * 
  * Models a Media instance for the Moes system using a title, url, and how many points it costs.
@@ -28,6 +29,20 @@ public class Media
         this.title = title;
         this.url = url;
         this.points = points;
+    }
+
+    public Media(BufferedReader br) throws IOException
+    {
+        this.title = br.readLine();
+        this.url = br.readLine();
+        this.points = Integer.parseInt(br.readLine());
+    }
+
+    public void save(BufferedWriter bw) throws IOException
+    {
+        bw.write(this.title + "\n");
+        bw.write(this.url + "\n");
+        bw.write(this.points + "\n");
     }
 
     /**
