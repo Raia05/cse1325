@@ -12,6 +12,20 @@ import product.Media;
  */
 public class Unlimited extends Account
 {
+    public Unlimited() 
+    {
+        super();
+    }
+
+    public Unlimited(BufferedReader br) throws IOException 
+    {
+        super(br);
+    }
+
+    public void save(BufferedWriter bw) throws IOException 
+    {
+        super.save(bw);
+    }
     /**
      * Attempts to play the specified media.
      * 
