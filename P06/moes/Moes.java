@@ -5,6 +5,9 @@ import customer.Student;
 import customer.Account;
 import customer.Alacarte;
 import customer.Unlimited;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
 import product.Media;
 
 /**
@@ -17,8 +20,8 @@ import product.Media;
  */
 public class Moes
 {
-    private ArrayList<Media> library = new ArrayList<>();
-    private ArrayList<Student> customers = new ArrayList<>();
+    private ArrayList<Media> library;
+    private ArrayList<Student> customers;
 
     /**
      * Adds a media item to the library.
@@ -28,6 +31,40 @@ public class Moes
     public void addMedia(Media media)
     {
         this.library.add(media);
+    }
+
+    public Moes()
+    {
+        this.library = new ArrayList<>();
+        this.customers = new ArrayList<>();
+    }
+
+    public Moes(BufferedReader br) throws IOException 
+    {
+        int mediaSize = Integer.parseInt(br.readLine());
+        this.library = new ArrayList<>();
+        for (int i = 0; i < mediaSize; i++) {
+            this.library.add(new Media(br));
+        }
+
+        int studentSize = Integer.parseInt(br.readLine());
+        this.customers = new ArrayList<>();
+        for (int i = 0; i < studentSize; i++) {
+            this.customers.add(new Student(br));
+        }
+    }
+
+    public void save(BufferedWriter bw) throws IOException 
+    {
+        bw.write(this.library.size() + "\n");
+        for (Media media : mediaList) {
+            media.save(bw);
+        }
+
+        bw.write(this.customers.size() + "\n");
+        for (Student student : studentList) {
+            student.save(bw);
+        }
     }
 
     /**
