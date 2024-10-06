@@ -1,7 +1,9 @@
 package customer;
 
 import product.Media;
-
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
 
 
 
@@ -47,6 +49,30 @@ public class Student
             this.account = new Alacarte();
         }
 
+    }
+
+
+    public Student(BufferedReader br) throws IOException 
+    {
+        this.name = br.readLine();
+        this.email = br.readLine();
+        this.id = Integer.parseInt(br.readLine());
+
+        String accountType = br.readLine();
+        if (accountType.equals("Unlimited")) {
+            this.account = new Unlimited(br);
+        } else if (accountType.equals("Alacarte")) {
+            this.account = new Alacarte(br);
+        }
+    }
+
+    public void save(BufferedWriter bw) throws IOException 
+    {
+        bw.write(name + "\n");
+        bw.write(email + "\n");
+        bw.write(Integer.toString(id) + "\n");
+        bw.write(account.getClass().getSimpleName() + "\n");
+        account.save(bw);
     }
 
     /**
