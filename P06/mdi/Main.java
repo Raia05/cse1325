@@ -3,9 +3,18 @@ import moes.Moes;
 import java.util.Scanner;
 import customer.Student;
 import product.Media;
+import java.io.FileReader;
+import java.io.BufferedReader;
+import java.io.FileWriter;
+import java.io.BufferedWriter;
+import java.io.IOException;
 
 public class Main
 {
+    private static final String extension = ".moes";
+    private static final String magicCookie = "moes";
+    private static final String fileVersion = "0.2";
+    private String filename = "NewFile.moes";
     private Moes moes;
     private String output;
     private Menu menu;
@@ -103,6 +112,71 @@ public class Main
 
         
     }
+    private void newMoes() 
+    {
+        moes = new Moes();
+    }
+
+    private void save() throws IOException 
+    {
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(filename))) 
+        {
+            bw.write(magicCookie + "\n" + fileVersion + "\n");
+            moes.save(bw);
+        } 
+        catch (IOException e) 
+        {
+            System.out.println("Error saving file: " + e.getMessage());
+        }
+    }
+
+    private void saveAs() throws IOException
+    {
+        System.out.print("Current File Name: " + filename + "\n");
+        BufferedReader reader = new BufferedReader(getString("Enter new filename: ", ""));
+        filename = reader.readLine();
+        if (!filename.endsWith(extension)) 
+        {
+            filename += extension;
+        }
+        save();
+    }
+
+    private void open() throws IOException 
+    {
+        BufferedReader reader = new BufferedReader(getString("Enter filename to open: ", ""));
+        String newFilename = reader.readLine();
+        if (!newFilename.endsWith(extension)) 
+        {
+            newFilename += extension;
+        }
+
+        try (BufferedReader br = new BufferedReader(new FileReader(newFilename))) 
+        {
+            if (br.readLine().equals(magicCookie) && br.readLine().equals(fileVersion))
+            {
+                try
+                {
+                    this.moes = new Moes(br);
+                    this.filename = newFilename;
+                }
+                catch (IOException e)
+                {
+                    System.err.println(e.getMessage());
+                }
+
+            }
+            else
+            {
+                throw new IOException("file does not match version or cookie");
+            }
+
+        } 
+        catch (IOException e) 
+        {
+            System.out.println("Error opening file: " + e.getMessage());
+        }
+    }
 
     public Main()
     {
@@ -111,14 +185,19 @@ public class Main
         this.menu = new Menu();
         this.output = "";
 
-        this.menu.addMenuItem(new MenuItem("Exit", () -> endApp()));
+        this.menu.addMenuItem(new MenuItem("Exit\n", () -> endApp()));
         this.menu.addMenuItem(new MenuItem("Play media", () -> playMedia()));
         this.menu.addMenuItem(new MenuItem("List media", () -> listMedia()));
         this.menu.addMenuItem(new MenuItem("List available points", () -> AvailablePoints()));
         this.menu.addMenuItem(new MenuItem("Buy points", () -> buyPoints()));
         this.menu.addMenuItem(new MenuItem("Add media", () -> addMedia()));
         this.menu.addMenuItem(new MenuItem("List all students", () -> listStudents()));
-        this.menu.addMenuItem(new MenuItem("Add a student", () -> addStudent()));
+        this.menu.addMenuItem(new MenuItem("Add a student\n", () -> addStudent()));
+        this.menu.addMenuItem(new MenuItem("New Instance", () -> newMoes()));
+        this.menu.addMenuItem(new MenuItem("Save file", () -> save()));
+        this.menu.addMenuItem(new MenuItem("Save file As", () -> saveAs()));
+        this.menu.addMenuItem(new MenuItem("Open File", () -> open()));
+
 
     }
 
