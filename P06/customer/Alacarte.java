@@ -1,5 +1,7 @@
 package customer;
-
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
 import product.Media;
 
 /**
@@ -11,7 +13,7 @@ import product.Media;
  */
 public class Alacarte extends Account
 {
-    private int pointsRemaining = 0;
+    private int pointsRemaining;
 
 
     /**
@@ -33,6 +35,24 @@ public class Alacarte extends Account
     public int getPointsRemaining()
     {
         return this.pointsRemaining;
+    }
+
+    public Alacarte() 
+    {
+        super();
+        this.pointsRemaining = 0;
+    }
+
+    public Alacarte(BufferedReader br) throws IOException 
+    {
+        super(br);
+        this.pointsRemaining = Integer.parseInt(br.readLine());
+    }
+
+    public void save(BufferedWriter bw) throws IOException 
+    {
+        super.save(bw);
+        bw.write(Integer.toString(pointsRemaining) + "\n");
     }
 
 
