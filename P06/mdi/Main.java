@@ -133,19 +133,17 @@ public class Main
     private void saveAs() throws IOException
     {
         System.out.print("Current File Name: " + filename + "\n");
-        BufferedReader reader = new BufferedReader(getString("Enter new filename: ", ""));
-        filename = reader.readLine();
-        if (!filename.endsWith(extension)) 
+        this.filename = getString("Enter new filename: ", "");
+        if (!this.filename.endsWith(extension)) 
         {
-            filename += extension;
+            this.filename += extension;
         }
         save();
     }
 
     private void open() throws IOException 
     {
-        BufferedReader reader = new BufferedReader(getString("Enter filename to open: ", ""));
-        String newFilename = reader.readLine();
+        String newFilename = getString("Enter filename to open: ", "");
         if (!newFilename.endsWith(extension)) 
         {
             newFilename += extension;
@@ -178,33 +176,61 @@ public class Main
         }
     }
 
-    public Main()
+    public Main() throws IOException
     {
         this.running = true;
         this.moes = new Moes();
         this.menu = new Menu();
         this.output = "";
 
-        this.menu.addMenuItem(new MenuItem("Exit\n", () -> endApp()));
-        this.menu.addMenuItem(new MenuItem("Play media", () -> playMedia()));
-        this.menu.addMenuItem(new MenuItem("List media", () -> listMedia()));
-        this.menu.addMenuItem(new MenuItem("List available points", () -> AvailablePoints()));
-        this.menu.addMenuItem(new MenuItem("Buy points", () -> buyPoints()));
-        this.menu.addMenuItem(new MenuItem("Add media", () -> addMedia()));
-        this.menu.addMenuItem(new MenuItem("List all students", () -> listStudents()));
-        this.menu.addMenuItem(new MenuItem("Add a student\n", () -> addStudent()));
-        this.menu.addMenuItem(new MenuItem("New Instance", () -> newMoes()));
-        this.menu.addMenuItem(new MenuItem("Save file", () -> save()));
-        this.menu.addMenuItem(new MenuItem("Save file As", () -> saveAs()));
-        this.menu.addMenuItem(new MenuItem("Open File", () -> open()));
+            this.menu.addMenuItem(new MenuItem("Exit\n", () -> endApp()));
+            this.menu.addMenuItem(new MenuItem("Play media", () -> playMedia()));
+            this.menu.addMenuItem(new MenuItem("List media", () -> listMedia()));
+            this.menu.addMenuItem(new MenuItem("List available points", () -> AvailablePoints()));
+            this.menu.addMenuItem(new MenuItem("Buy points", () -> buyPoints()));
+            this.menu.addMenuItem(new MenuItem("Add media", () -> addMedia()));
+            this.menu.addMenuItem(new MenuItem("List all students", () -> listStudents()));
+            this.menu.addMenuItem(new MenuItem("Add a student\n", () -> addStudent()));
+            this.menu.addMenuItem(new MenuItem("New Instance", () -> newMoes()));
+            this.menu.addMenuItem(new MenuItem("Save file", () -> {
+                try {
+                    save();
+                } catch (IOException e) {
+                    System.out.println("Error saving file: " + e.getMessage());
+                }
+            }));
+
+            this.menu.addMenuItem(new MenuItem("Save file As", () -> {
+                try {
+                    saveAs();
+                } catch (IOException e) {
+                    System.out.println("Error saving file as: " + e.getMessage());
+                }
+            }));
+
+            this.menu.addMenuItem(new MenuItem("Open File", () -> {
+                try {
+                    open();
+                } catch (IOException e) {
+                    System.out.println("Error opening file: " + e.getMessage());
+                }
+            }));
+
 
 
     }
 
     public static void main(String[] args) 
     {
-        Main app = new Main();
-        app.mdi();
+        try
+        {
+            Main app = new Main();
+            app.mdi();
+        }
+        catch (IOException e) 
+        {
+            System.out.println("Error opening file: " + e.getMessage());
+        }
     }
 
     private void mdi()
@@ -213,7 +239,7 @@ public class Main
         {
             try
             {
-                System.out.println(menuTitle + "\n\n\n" + this.menu + "\n" + this.output);
+                System.out.println(menuTitle + "\n" + this.filename + "\n\n" + this.menu + "\n" + this.output);
                 this.output = "";
                 Integer i = getInt("Selection? ");
                 if (i == null) continue;

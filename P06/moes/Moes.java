@@ -57,12 +57,12 @@ public class Moes
     public void save(BufferedWriter bw) throws IOException 
     {
         bw.write(this.library.size() + "\n");
-        for (Media media : mediaList) {
+        for (Media media : this.library) {
             media.save(bw);
         }
 
         bw.write(this.customers.size() + "\n");
-        for (Student student : studentList) {
+        for (Student student : this.customers) {
             student.save(bw);
         }
     }
