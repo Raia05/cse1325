@@ -36,12 +36,12 @@ public class Main
     private void addStudent()
     {
 
-        String name = getString("Student name? ");
+        String name = getString("Student name? ", "");
         boolean unlimited;
-        int id = getInt("Student ID? ");
+        int id = getInt("Student ID? ", "");
 
-        String email = getString("Student email? ");
-        char account = getString("(a)lacarte or (u)nlimited? ").toCharArray()[0];
+        String email = getString("Student email? ", "");
+        char account = getString("(a)lacarte or (u)nlimited? ", "").toCharArray()[0];
 
         if (account == 'a')
             unlimited = false;
@@ -65,9 +65,9 @@ public class Main
     private void addMedia()
     {
 
-        String title = getString("Title? ");
-        String url = getString("URL? ");
-        int points = getInt("Points? ");
+        String title = getString("Title? ", "");
+        String url = getString("URL? ", "");
+        int points = getInt("Points? ", "");
 
         Media media = new Media(title, url, points);
         this.moes.addMedia(media);
