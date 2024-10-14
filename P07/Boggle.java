@@ -31,7 +31,7 @@ public class Boggle {
                 {
                     board = boards.get(i);
                 }
-            Solver solver = new Solver(board);
+            Solver solver = new Solver(board, threadNumber);
             
             for (String word : words) 
             {
