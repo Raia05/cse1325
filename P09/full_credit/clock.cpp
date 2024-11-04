@@ -19,6 +19,7 @@ Clock::Clock(int hours, int minutes, int seconds) : _hours(hours), _minutes(minu
     }
 }
 
+Clock::~Clock() {};
 
 void Clock::print() 
 {
